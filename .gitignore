@@ -2,9 +2,10 @@
 /node_modules
 
 # production
+/dist
 /build
 
+
 # misc
-.DS_Store
-.env.local
-npm-debug.log*
+.env
+package-lock.json
