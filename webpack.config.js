@@ -6,6 +6,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
     mode: isProd ? 'production' : 'development',
+    devServer: {
+        port: 1337
+    },
     entry: { index: path.resolve(__dirname, "src", "index.tsx") },
     output: {
         filename: 'bundle.js',
