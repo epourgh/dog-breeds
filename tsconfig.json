@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "module": "esnext",
     "target": "es2015",
     "jsx": "react",
@@ -11,10 +11,23 @@
     "declaration": true,
     "esModuleInterop": true,
     // "allowSyntheticDefaultImports": true,
+    "lib": [ "es2015", "dom" ],
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "paths": {
       "redux": [
           "./node_modules/redux/dist/redux"
+      ],
+      "redux-thunk": [
+          "./node_modules/redux-thunk/dist/redux-thunk"
+      ],
+      "redux-devtools-extension": [
+          "./node_modules/redux-devtools-extension/index.js"
+      ],
+      "@redux-d-ts": [
+          "./node_modules/redux/index.d.ts"
+      ],
+      "axios": [
+          "./node_modules/axios/dist/axios"
       ],
     }
   },

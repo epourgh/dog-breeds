@@ -1,21 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTypedSelector } from '../hooks/useTypedSelector';
+import { useActions } from '../hooks/useActions';
 
 const FirstPage = () => {
-  const [state, setState] = useState('CLICK ME');
+  const [dogList, setDogList] = useState([]);
+  const [dogListState] = useTypedSelector((state) => [state.dogList]);
+  const { fetchDogList } = useActions();
 
-  const changeState = () => {
-    if (state === 'CLICK ME') {
-      setState('CLICKED');
-      return;
+  useEffect(() => {
+    console.log(dogListState);
+    fetchDogList();
+  }, []);
+
+  useEffect(() => {
+    if (checkIfEmptyObj(dogListState.data.message)) {
+      console.log(checkIfEmptyObj(dogListState.data.message));
+      console.log(dogListState.data);
+    } else if (dogListState.loading === true) {
+      console.log('loading');
+    } else {
+      console.log('loaded');
+      console.log(dogListState.data);
+      setDogList(Object.keys(dogListState.data.message));
     }
+  }, [dogListState]);
 
-    setState('CLICK ME');
-  };
+  useEffect(() => {
+    console.log(dogList);
+  }, [dogList]);
+
+  const checkIfEmptyObj = (obj) => obj && Object.keys(obj).length === 0
+                                       && obj.constructor === Object;
 
   return (
     <div>
-      {/* eslint-disable-next-line react/button-has-type */}
-      <button onClick={() => changeState()}>{state}</button>
+      {
+        dogList.map((dogBreed) => <p>{dogBreed}</p>)
+      }
     </div>
   );
 };
