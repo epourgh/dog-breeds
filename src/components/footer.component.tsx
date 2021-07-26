@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from '../styles/_footer.module.scss';
 
 const FooterComponent = () => (
-  <div>
+  <div className={styles.footerContent}>
     Emerson Pourghaed
   </div>
 );

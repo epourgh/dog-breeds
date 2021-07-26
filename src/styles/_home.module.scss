@@ -1,0 +1,28 @@
+@import 'global.module';
+
+.imageWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.imageContainerStyle {
+    text-align: center;
+    color: $background-color;
+    padding: 20px;
+}
+
+.imageStyle {
+    height: 200px;
+    border: 1px solid $background-color;
+    border-radius: 10px;
+}
+
+.inputWrapper {
+    text-align: center;
+    margin: 5%;
+}
+
+.inputSearchStyle {
+    width: 20%;
+    height: 2em; 
+}

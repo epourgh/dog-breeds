@@ -1,4 +1,3 @@
-import './styles/Global.module.scss';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import React from 'react';
 import HomePage from './pages/home.page';

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
+import styles from '../styles/_home.module.scss';
 
 const FirstPage = () => {
   const [inputState, setInputState] = useState('');
@@ -58,19 +59,24 @@ const FirstPage = () => {
 
   return (
     <div>
-      <input
-        placeholder="search by name"
-        value={inputState}
-        onChange={(e) => setInputState(e.target.value.toLocaleLowerCase())}
-      />
-      {
-        Object.values(dogList.message).filter((dogBreed) => inputState === '' || dogBreed.name.includes(inputState)).map((dogBreed) => (
-          <div>
-            {dogBreed.image !== 'img' ? <img src={dogBreed.image} /> : <></>}
-            <p>{dogBreed.name}</p>
-          </div>
-        ))
-      }
+      <div className={styles.inputWrapper}>
+        <input
+          placeholder="Search by breed"
+          value={inputState}
+          onChange={(e) => setInputState(e.target.value.toLocaleLowerCase())}
+          className={styles.inputSearchStyle}
+        />
+      </div>
+      <div className={styles.imageWrapper}>
+        {
+          Object.values(dogList.message).filter((dogBreed) => inputState === '' || dogBreed.name.includes(inputState)).map((dogBreed) => (
+            <div className={styles.imageContainerStyle}>
+              {dogBreed.image !== 'img' ? <img src={dogBreed.image} className={styles.imageStyle} /> : <></>}
+              <p>{dogBreed.name}</p>
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 };
