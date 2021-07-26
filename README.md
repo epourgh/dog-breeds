@@ -1,4 +1,4 @@
-#### Author: ampourgh | Version: 1.0.0 | Last Modified: 2021
+#### Author: Emerson Pourghaed | Version: 1.0.0 | Last Modified: 2021
 
 # DOG BREED LIST
 
@@ -13,7 +13,7 @@
 
 
 ## Challenges
-* Did not see an API call for getting both all the breeds and a random image of each breed in the documentation or Symfony routes, outside of gettng a maximum of 50 images for all the breeds. Instead I went with fetching all the breeds first, followed by making a call to the individual breeds. The objects were cached to local storage. 
+* Did not see an API call for getting both all the breeds and a random image of each breed in the documentation or in the Symfony routes, outside of gettng a maximum of 50 images at random for all the breeds. Instead I went with fetching all the breeds first, followed by making a call to the individual breeds. The objects were cached to local storage. 
 
 ### Acknowledgments
-* The Webpack/TypeScript/Sass was boilerplate I set up earlier this year.
+* The Webpack/TypeScript/Sass was boilerplate I set up from earlier this year.
