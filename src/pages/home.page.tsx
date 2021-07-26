@@ -5,7 +5,7 @@ import styles from '../styles/_home.module.scss';
 
 const FirstPage = () => {
   const [inputState, setInputState] = useState('');
-  const [dogList, setDogList] = useState({ message: { 0: { key: 0, name: 'breed', image: 'img' } } });
+  const [dogList, setDogList] = useState({ message: { 0: { key: 0, name: '', image: 'img' } } });
   const [dogListState] = useTypedSelector((state) => [state.dogList]);
   const { fetchDogList } = useActions();
 
@@ -36,8 +36,6 @@ const FirstPage = () => {
       const dogList = dogListState.data;
       console.log(dogList);
 
-      await delay(5000);
-
       const stringifyDogList = JSON.stringify(dogList);
       console.log(stringifyDogList);
 
@@ -55,8 +53,6 @@ const FirstPage = () => {
   const checkIfEmptyObj = (obj) => obj && Object.keys(obj).length === 0
                                        && obj.constructor === Object;
 
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
   return (
     <div>
       <div className={styles.inputWrapper}>
@@ -68,10 +64,19 @@ const FirstPage = () => {
         />
       </div>
 
-      {(inputState === '' || Object.keys(dogList.message).some(x => x.includes(inputState))) ? <></> : (
+      {(dogListState.loading === true) ? <div className={styles.textWrapper}><h2>Loading...</h2></div> : <></>}
+
+      {(inputState === '' || Object.keys(dogList.message).some((x) => x.includes(inputState))) ? <></> : (
         <div className={styles.textWrapper}>
           <p>
-            No search results for a breed named {inputState}. <a href='https://github.com/jigsawpieces/dog-api-images#dog-api-images'>Read</a> how to contribute to the API.
+            No search results for a breed named
+            {' '}
+            {inputState}
+            .
+            {' '}
+            <a href="https://github.com/jigsawpieces/dog-api-images#dog-api-images">Read</a>
+            {' '}
+            how to contribute to the API.
           </p>
         </div>
       )}
