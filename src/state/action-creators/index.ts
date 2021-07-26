@@ -10,16 +10,28 @@ export const fetchDogList = () => async (dispatch: Dispatch<Action>) => {
   dispatch({ type: ActionType.GET_DOGS });
 
   try {
-    const request = 'https://dog.ceo/api/breeds/list';
     // eslint-disable-next-line new-cap
-    const { data } = await axios({
+    await axios({
       method: 'GET',
-      url: request,
-    });
+      url: 'https://dog.ceo/api/breeds/list',
+    }).then((response) => {
+      const data = {
+        message: {},
+        success: 'loading',
+      };
+      let image;
 
-    dispatch({
-      type: ActionType.GET_DOGS_SUCCESS,
-      payload: data,
+      Object.values(response.data.message).forEach(async (dogBreed, index) => {
+        image = await axios({ method: 'GET', url: `https://dog.ceo/api/breed/${dogBreed}/images/random` });
+        data.message[dogBreed] = { key: index, name: dogBreed, image: image.data.message };
+      });
+
+      return data;
+    }).then((data) => {
+      dispatch({
+        type: ActionType.GET_DOGS_SUCCESS,
+        payload: data,
+      });
     });
   } catch (err) {
     dispatch({
