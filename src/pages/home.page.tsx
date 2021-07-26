@@ -12,8 +12,6 @@ const FirstPage = () => {
   useEffect(() => {
     console.log(dogListState);
     if (localStorage.getItem('dogList')) {
-      console.log('exists in storage');
-      console.log(localStorage.getItem('dogList'));
       setDogList(JSON.parse(localStorage.getItem('dogList')));
       return;
     }
@@ -31,13 +29,9 @@ const FirstPage = () => {
     } else if (dogListState.loading === true) {
       console.log('loading');
     } else {
-      console.log('loaded');
-
       const dogList = dogListState.data;
-      console.log(dogList);
 
       const stringifyDogList = JSON.stringify(dogList);
-      console.log(stringifyDogList);
 
       localStorage.setItem('dogList', stringifyDogList);
 
@@ -64,7 +58,9 @@ const FirstPage = () => {
         />
       </div>
 
-      {(dogListState.loading === true) ? <div className={styles.textWrapper}><h2>Loading...</h2></div> : <></>}
+      {(dogListState.loading === true) 
+        ? <div className={styles.textWrapper}><h2>Loading...</h2></div> 
+        : <></>}
 
       {(inputState === '' || Object.keys(dogList.message).some((x) => x.includes(inputState))) ? <></> : (
         <div className={styles.textWrapper}>
@@ -85,7 +81,7 @@ const FirstPage = () => {
         {
           Object.values(dogList.message).filter((dogBreed) => inputState === '' || dogBreed.name.includes(inputState)).map((dogBreed) => (
             <div className={styles.imageContainerStyle}>
-              {dogBreed.image !== 'img' ? <img src={dogBreed.image} className={styles.imageStyle} /> : <></>}
+              {dogBreed.image !== 'img' ? <img src={dogBreed.image} className={styles.imageStyle} alt={dogBreed.name} /> : <></>}
               <p>{dogBreed.name}</p>
             </div>
           ))
