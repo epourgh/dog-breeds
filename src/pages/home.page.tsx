@@ -67,6 +67,15 @@ const FirstPage = () => {
           className={styles.inputSearchStyle}
         />
       </div>
+
+      {(inputState === '' || Object.keys(dogList.message).some(x => x.includes(inputState))) ? <></> : (
+        <div className={styles.textWrapper}>
+          <p>
+            No search results for a breed named {inputState}. <a href='https://github.com/jigsawpieces/dog-api-images#dog-api-images'>Read</a> how to contribute to the API.
+          </p>
+        </div>
+      )}
+
       <div className={styles.imageWrapper}>
         {
           Object.values(dogList.message).filter((dogBreed) => inputState === '' || dogBreed.name.includes(inputState)).map((dogBreed) => (
